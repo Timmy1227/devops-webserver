@@ -1,0 +1,12 @@
+INFO Server started successfully
+INFO User connected
+INFO User logged in
+WARNING High memory usage
+ERROR Database connection failed
+INFO Retrying database connection
+ERROR Database connection failed
+INFO User disconnected
+WARNING Disk space running low
+INFO Server still running
+ERROR Website unavailable
+ERROR Web server stopped unexpectedly

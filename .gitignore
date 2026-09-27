@@ -1,1 +1,12 @@
+server.log
+
+# Environment files
+.env
+
+# Log files
 *.log
+logs/
+
+# Temporary files
+*.tmp
+config.txt

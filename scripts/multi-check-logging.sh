@@ -50,4 +50,3 @@ else
     echo "SUCCESS: All servers are healthy!"
     exit 0
 fi
-

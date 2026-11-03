@@ -10,3 +10,11 @@ logs/
 # Temporary files
 *.tmp
 config.txt
+*.bak
+*.swp
+
+# Local runtime state
+*.state
+
+# Local configuration
+config/monitor.conf

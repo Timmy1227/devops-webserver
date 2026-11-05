@@ -1,0 +1,27 @@
+
+name: Bash Syntax Check
+
+on:
+  push:
+    branches:
+      - main
+      - feature/github-actions-ci
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  bash-syntax:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Bash syntax
+        run: |
+          for script in scripts/*.sh; do
+            echo "Checking $script"
+            bash -n "$script" || exit 1
+          done
+          echo "All Bash syntax checks passed!"

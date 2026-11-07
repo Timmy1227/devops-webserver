@@ -25,3 +25,14 @@ jobs:
             bash -n "$script" || exit 1
           done
           echo "All Bash syntax checks passed!"
+
+
+  pipeline-summary:
+    needs: bash-syntax
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display pipeline summary
+        run: |
+          echo "Bash syntax validation completed successfully."
+          echo "CI pipeline finished."

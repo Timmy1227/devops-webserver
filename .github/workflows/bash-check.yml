@@ -36,3 +36,16 @@ jobs:
         run: |
           echo "Bash syntax validation completed successfully."
           echo "CI pipeline finished."
+
+
+  deploy-simulation:
+    needs: pipeline-summary
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Simulate deployment
+        run: |
+          echo "Starting deployment simulation..."
+          echo "CI checks passed successfully."
+          echo "Deploying DevOps webserver..."
+          echo "Deployment simulation completed!"

@@ -49,3 +49,28 @@ jobs:
           echo "CI checks passed successfully."
           echo "Deploying DevOps webserver..."
           echo "Deployment simulation completed!"
+
+
+  deploy-staging:
+    needs: deploy-simulation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to staging
+        run: |
+          echo "Starting staging deployment..."
+          echo "Deploying DevOps webserver to staging..."
+          echo "Running staging checks..."
+          echo "Staging deployment completed!"
+
+  deploy-production:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to production
+        run: |
+          echo "Starting production deployment..."
+          echo "Staging checks completed successfully."
+          echo "Deploying DevOps webserver to production..."
+          echo "Production deployment completed!"

@@ -76,3 +76,4 @@ jobs:
           echo "Staging checks completed successfully."
           echo "Deploying DevOps webserver to production..."
           echo "Production deployment completed!"
+          echo "Testing the one-minute production wait timer."

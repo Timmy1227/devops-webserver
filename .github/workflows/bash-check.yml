@@ -68,6 +68,17 @@ jobs:
           echo "Staging deployment completed!"
           echo "Current deployment environment: $APP_ENV"
 
+      - name: Verify staging secret
+        env:
+          STAGING_SECRET: ${{ secrets.DEMO_DEPLOY_TOKEN }}
+        run: |
+          if [ -n "$STAGING_SECRET" ]; then
+            echo "Staging secret is configured."
+          else
+            echo "ERROR: Staging secret is missing."
+            exit 1
+          fi
+
   deploy-production:
     needs: deploy-staging
     runs-on: ubuntu-latest

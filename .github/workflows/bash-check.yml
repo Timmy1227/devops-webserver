@@ -96,3 +96,13 @@ jobs:
           echo "Production deployment completed!"
           echo "Testing the one-minute production wait timer."
           echo "Current deployment environment: $APP_ENV"
+        name: Verify staging secret isolation
+        env:
+          STAGING_SECRET: ${{ secrets.DEMO_DEPLOY_TOKEN }}
+        run: |
+          if [ -z "$STAGING_SECRET" ]; then
+            echo "PASS: Staging secret is not available in production."
+          else
+            echo "FAIL: Staging secret is accessible in production."
+            exit 1
+          fi

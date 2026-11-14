@@ -55,6 +55,9 @@ jobs:
     needs: deploy-simulation
     runs-on: ubuntu-latest
     environment: staging
+    env:
+      APP_ENV: ${{ vars.APP_ENV }}
+
 
     steps:
       - name: Deploy to staging
@@ -63,11 +66,26 @@ jobs:
           echo "Deploying DevOps webserver to staging..."
           echo "Running staging checks..."
           echo "Staging deployment completed!"
+          echo "Current deployment environment: $APP_ENV"
+
+      - name: Verify staging secret
+        env:
+          STAGING_SECRET: ${{ secrets.DEMO_DEPLOY_TOKEN }}
+        run: |
+          if [ -n "$STAGING_SECRET" ]; then
+            echo "Staging secret is configured."
+          else
+            echo "ERROR: Staging secret is missing."
+            exit 1
+          fi
 
   deploy-production:
     needs: deploy-staging
     runs-on: ubuntu-latest
     environment: production
+    env:
+      APP_ENV: ${{ vars.APP_ENV }}
+
 
     steps:
       - name: Deploy to production
@@ -77,3 +95,4 @@ jobs:
           echo "Deploying DevOps webserver to production..."
           echo "Production deployment completed!"
           echo "Testing the one-minute production wait timer."
+          echo "Current deployment environment: $APP_ENV"

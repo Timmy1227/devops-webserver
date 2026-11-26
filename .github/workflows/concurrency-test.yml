@@ -1,0 +1,30 @@
+name: Concurrency Stress Test
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  simulated-deployment:
+    runs-on: ubuntu-latest
+
+    concurrency:
+      group: concurrency-stress-test
+      cancel-in-progress: false
+
+    steps:
+      - name: Start simulated deployment
+        run: |
+          echo "Deployment started"
+          date -u
+
+      - name: Simulate deployment delay
+        run: |
+          echo "Deployment in progress..."
+          sleep 120
+
+      - name: Complete simulated deployment
+        run: |
+          echo "Deployment completed"
+          date -u

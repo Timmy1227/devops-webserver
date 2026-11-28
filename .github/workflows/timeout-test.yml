@@ -1,0 +1,27 @@
+name: Workflow Timeout Test
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  simulated-deployment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+
+    steps:
+      - name: Start simulated deployment
+        run: |
+          echo "Deployment started"
+          date -u
+
+      - name: Simulate stuck deployment
+        run: |
+          echo "Deployment is taking too long..."
+          sleep 180
+
+      - name: Complete deployment
+        run: |
+          echo "Deployment completed successfully"
+          date -u
